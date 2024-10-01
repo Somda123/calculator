@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+  
+</head>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgb(70, 63, 63);
+            color: #f0e7e7;
+            padding: 10px;
+        }
+
+        #calculator {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: rgb(85, 105, 105);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 1px 2px 20px 2px rgb(113, 113, 177);
+        }
+
+        #results {
+            width: 100%;
+            padding-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            text-align: right;
+            border: solid 2px #333;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 22%;
+            height: 50px;
+            margin: 5px 1%;
+            font-size: 1.2em;
+            text-align: center;
+            background-color: rgb(191, 191, 222);
+            border: none;
+            box-shadow: 1px 2px 6px 1px red;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: rgb(239, 8, 220);
+        }
+
+        footer {
+            background-color: rgb(62, 55, 55);
+            padding: 10px;
+            text-align: center;
+            color: #f0e7e7;
+            font-size: 14px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @media screen {
+            button {
+                width: 30%;
+                font-size: 1em;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #results {
+                font-size: 1.2em;
+                padding: 10px;
+            }
+
+            button {
+                width: 45%;
+                font-size: 0.9em;
+                height: 40px;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+
+</style>
+<script>
+
+    // Function to append values to the display
+    function addToDisplay(value) {
+        document.getElementById("results").value += value;
+    }
+
+    // Function to clear the display
+    function clearDisplay() {
+        document.getElementById("results").value = "";
+    }
+
+    // Function to delete the last character
+    function deleteLast() {
+        let display = document.getElementById("results").value;
+        document.getElementById("results").value = display.slice(0, -1);
+    }
+
+    // Function to calculate the result
+    function cal() {
+        let display = document.getElementById("results").value;
+        try {
+            let result = eval(display); // Evaluate the expression
+            document.getElementById("results").value = result;
+        } catch (error) {
+            document.getElementById("results").value = "Error"; // Handle invalid expressions
+        }
+    }
+</script>
+
+
+<body>
+    <header>
+        <h2>Calculator</h2>
+    </header>
+    <main>
+
+        <div id="calculator">
+            <input type="text" name="display" id="results" placeholder="0" readonly><br>
+
+            <button class="operator" onclick="clearDisplay()">AC</button>
+            <button class="operator" id="mul" onclick="addToDisplay('*')">*</button>
+            <button class="operator" id="divid" onclick="addToDisplay('/')">/</button><br>
+            <button class="operator" id="addition" onclick="addToDisplay('+')">+</button>
+            <button class="operator" id="minus" onclick="addToDisplay('-')">-</button>
+            <button class="operator" id="delet" onclick="deleteLast()">Del</button><br>
+            <button class="digit" id="one" onclick="addToDisplay('1')">1</button>
+            <button class="digit" id="two" onclick="addToDisplay('2')">2</button>
+            <button class="digit" id="three" onclick="addToDisplay('3')">3</button><br>
+            <button class="digit" id="four" onclick="addToDisplay('4')">4</button>
+            <button class="digit" id="five" onclick="addToDisplay('5')">5</button>
+            <button class="digit" id="six" onclick="addToDisplay('6')">6</button><br>
+            <button class="digit" id="seven" onclick="addToDisplay('7')">7</button>
+            <button class="digit" id="eight" onclick="addToDisplay('8')">8</button>
+            <button class="digit" id="nine" onclick="addToDisplay('9')">9</button><br>
+            <button class="digit" id="zero" onclick="addToDisplay('0')">0</button>
+            <button class="digit" id="decimal" onclick="addToDisplay('.')">.</button>
+            <button class="operator" id="sum" onclick="cal()">=</button><br>
+        </div>
+    </main>
+
+    <footer>&copy; Made by Geetashri and Somda 2024</footer>
+
+</body>
+</html>
